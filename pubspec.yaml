@@ -11,7 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  json_annotation:
   cupertino_icons: ^1.0.2
   get: ^4.6.1
   flutter_bloc: ^8.0.1
@@ -21,7 +21,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-    
+  build_runner:
+  json_serializable:    
   flutter_lints: ^1.0.0
 flutter:
 
