@@ -1,4 +1,3 @@
-
 import '../models/todo.dart';
 
 /// GET - ListTodo
@@ -7,7 +6,6 @@ import '../models/todo.dart';
 class TodoRepository {
   Future<List<Map<String, dynamic>>> listTodo() async {
     await Future.delayed(const Duration(seconds: 1));
-
     return [
       {
         'id': 1,

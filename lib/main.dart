@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:todoapp/view/home.dart';
+import 'package:todoapp/bloc/todo_bloc.dart';
+import 'package:todoapp/screen/home.dart';
+
+import 'bloc/todo_event.dart';
 
 void main() {
   runApp(const MyApp());

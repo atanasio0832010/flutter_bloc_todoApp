@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:todoapp/bloc/todo_list/todo_state.dart';
-
-import '../../models/todo.dart';
+import 'package:todoapp/bloc/todo_state.dart';
+import '../models/todo.dart';
 
 @immutable
 abstract class TodoEvent extends Equatable {}

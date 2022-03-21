@@ -1,9 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todoapp/bloc/todo_list/todo_event.dart';
-import 'package:todoapp/bloc/todo_list/todo_state.dart';
-
-import '../../models/todo.dart';
-import '../../repository/todo_repository.dart';
+import 'package:todoapp/bloc/todo_event.dart';
+import 'package:todoapp/bloc/todo_state.dart';
+import 'package:todoapp/models/todo.dart';
+import 'package:todoapp/repository/todo_repository.dart';
 
 class TodoBloc extends Bloc<TodoEvent, TodoState> {
   final TodoRepository repository;
@@ -23,6 +22,7 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
     }
   }
 
+  // Read
   Stream<TodoState> _mapListTodosEvent(ListTodosEvent event) async* {
     try {
       yield Loading();
@@ -37,10 +37,11 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
 
       yield Loaded(todos: todos);
     } catch (e) {
-      yield Error(message: e.toString());
+      yield Error(message: '에러가 발생하였습니다 :: ${e.toString()}');
     }
   }
 
+  // Create
   Stream<TodoState> _mapCreateTodoEvent(CreateTodoEvent event) async* {
     try {
       if (state is Loaded) {
@@ -49,7 +50,7 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
         final newTodo = Todo(
           id: parsedState.todos[parsedState.todos.length - 1].id + 1,
           title: event.title,
-          createAt: DateTime.now().toString(),
+          createdAt: DateTime.now().toString(),
         );
 
         final prevTodos = [
@@ -77,6 +78,7 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
     }
   }
 
+  // Delete
   Stream<TodoState> _mapDeleteTodoEvent(DeleteTodoEvent event) async* {
     try {
       if (state is Loaded) {
