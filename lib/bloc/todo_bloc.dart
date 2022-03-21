@@ -48,7 +48,9 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
         final parsedState = (state as Loaded);
 
         final newTodo = Todo(
-          id: parsedState.todos[parsedState.todos.length - 1].id + 1,
+          id: parsedState.todos.isNotEmpty
+              ? parsedState.todos[parsedState.todos.length - 1].id + 1
+              : 1,
           title: event.title,
           createdAt: DateTime.now().toString(),
         );

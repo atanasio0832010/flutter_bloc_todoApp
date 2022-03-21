@@ -5,7 +5,7 @@ import '../models/todo.dart';
 /// DELETE - DeleteTodo
 class TodoRepository {
   Future<List<Map<String, dynamic>>> listTodo() async {
-    await Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(const Duration(milliseconds: 500));
     return [
       {
         'id': 1,
@@ -22,13 +22,13 @@ class TodoRepository {
 
   Future<Map<String, dynamic>> createTodo(Todo todo) async {
     /// body - request - response - return
-    await Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(const Duration(milliseconds: 500));
 
     return todo.toJson();
   }
 
   Future<Map<String, dynamic>> deleteTodo(Todo todo) async {
-    await Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(const Duration(milliseconds: 500));
 
     return todo.toJson();
   }

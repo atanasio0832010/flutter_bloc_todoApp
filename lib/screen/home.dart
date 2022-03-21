@@ -36,7 +36,7 @@ class HomeWidget extends StatefulWidget {
 }
 
 class _HomeWidgetState extends State<HomeWidget> {
-  var title = '';
+  String title = '';
 
   @override
   void initState() {
@@ -51,8 +51,12 @@ class _HomeWidgetState extends State<HomeWidget> {
       appBar: AppBar(
         title: const Text('Flutter Bloc'),
       ),
-      floatingActionButton:
-          FloatingActionButton(onPressed: () {}, child: const Icon(Icons.edit)),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            BlocProvider.of<TodoBloc>(context)
+                .add(CreateTodoEvent(title: title));
+          },
+          child: const Icon(Icons.edit)),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
@@ -69,7 +73,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                   if (state is Empty) {
                     return Container();
                   } else if (state is Error) {
-                    // 여기네요
                     return Text(state.message);
                   } else if (state is Loading) {
                     return const Center(
@@ -86,7 +89,11 @@ class _HomeWidgetState extends State<HomeWidget> {
                               child: Text(item.title),
                             ),
                             GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+                                // item delete
+                                BlocProvider.of<TodoBloc>(context)
+                                    .add(DeleteTodoEvent(todo: item));
+                              },
                               child: const Icon(
                                 Icons.delete,
                               ),
